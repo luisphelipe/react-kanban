@@ -2,8 +2,9 @@ import React from "react";
 
 function KanbanTask({ task }) {
   return (
-    <div>
-      <p>{task}</p>
+    <div className="kanban-task">
+      <div className="kanban-task-title">{task.title}</div>
+      <div className="kanban-task-description">{task.content}</div>
     </div>
   );
 }

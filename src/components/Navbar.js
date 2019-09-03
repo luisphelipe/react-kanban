@@ -2,14 +2,12 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div>
-      <p>Behold my Kanban Board</p>
-      <nav>
-        <ul>
-          <li>Sair</li>
-        </ul>
-      </nav>
-    </div>
+    <nav>
+      <h1>Behold my Kanban Board</h1>
+      <ul>
+        <li>Sair</li>
+      </ul>
+    </nav>
   );
 }
 

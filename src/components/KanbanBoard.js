@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import KanbanColumn from "./KanbanColumn";
+import initialState from "./initialState";
 
 function KanbanBoard() {
-  const [categories, setCategories] = useState([
-    { title: "Backlog", tasks: ["aaaa", "bbbb", "cccc"] },
-    { title: "WIP", tasks: ["aaaa", "bbbb", "cccc"] },
-    { title: "Done", tasks: ["aaaa", "bbbb", "cccc"] }
-  ]);
+  const [columns, setColumns] = useState(initialState);
 
   return (
-    <div>
-      {categories.map(category => {
-        return <KanbanColumn category={category} />;
+    <div id="kanban-board">
+      {columns.order.map(columnId => {
+        return <KanbanColumn column={columns.data[columnId]} />;
       })}
     </div>
   );

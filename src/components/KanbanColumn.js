@@ -1,12 +1,12 @@
 import React from "react";
 import KanbanTask from "./KanbanTask";
 
-function KanbanColumn({ category }) {
+function KanbanColumn({ column }) {
   return (
-    <div>
-      <h3>{category.title}</h3>
-      {category.tasks.map(task => {
-        return <KanbanTask task={task} />;
+    <div className="kanban-column">
+      <h3>{column.title}</h3>
+      {column.tasks.order.map(taskId => {
+        return <KanbanTask task={column.tasks.data[taskId]} />;
       })}
     </div>
   );
