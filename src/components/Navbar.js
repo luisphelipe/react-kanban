@@ -5,7 +5,7 @@ function Navbar() {
     <nav>
       <h1>Behold my Kanban Board</h1>
       <ul>
-        <li>Sair</li>
+        <li>Configuration & Theming</li>
       </ul>
     </nav>
   );
