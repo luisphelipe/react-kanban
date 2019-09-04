@@ -13,11 +13,28 @@ const KanbanContainer = styled.div`
 
 function KanbanBoard() {
   const [columns, setColumns] = useState(initialState);
+  const [taskCount, setTaskCount] = useState(columns.length);
 
-  const handleDrop = ({ draggableId, source, destination }) => {
-    console.log(source);
-    console.log(destination);
+  const createTask = columnId => {
+    setColumns(oldColumns => {
+      let newColumns = JSON.parse(JSON.stringify(oldColumns));
+      let targetColumn = newColumns.find(c => c.id === columnId);
 
+      let task = {
+        id: `t${taskCount}`,
+        title: "title",
+        content: "content"
+      };
+
+      setTaskCount(previousTaskCount => previousTaskCount + 1);
+
+      targetColumn.tasks.push(task);
+
+      return newColumns;
+    });
+  };
+
+  const handleDrop = ({ _, source, destination }) => {
     if (
       !destination ||
       (source.droppableId === destination.droppableId &&
@@ -28,34 +45,28 @@ function KanbanBoard() {
     setColumns(oldColumns => {
       let newColumns = JSON.parse(JSON.stringify(oldColumns));
 
-      let sourceColumn = newColumns.data[source.droppableId],
-        destinationColumn = newColumns.data[destination.droppableId];
+      let sourceColumn = newColumns.find(c => c.id === source.droppableId),
+        destinationColumn = newColumns.find(
+          c => c.id === destination.droppableId
+        );
 
-      let task = JSON.parse(
-        JSON.stringify(sourceColumn.tasks.data[draggableId])
-      );
+      let task = sourceColumn.tasks.splice(source.index, 1)[0];
+      destinationColumn.tasks.splice(destination.index, 0, task);
 
-      delete sourceColumn.tasks.data[draggableId];
-      sourceColumn.tasks.order.splice(source.index, 1);
-
-      destinationColumn.tasks.data[task.id] = task;
-      destinationColumn.tasks.order.splice(destination.index, 0, draggableId);
-
-      return {
-        data: {
-          ...newColumns.data
-        },
-        order: oldColumns.order
-      };
+      return newColumns;
     });
   };
 
   return (
     <KanbanContainer>
       <DragDropContext onDragEnd={handleDrop}>
-        {columns.order.map(columnId => {
+        {columns.map(column => {
           return (
-            <KanbanColumn column={columns.data[columnId]} key={columnId} />
+            <KanbanColumn
+              column={column}
+              createTask={createTask}
+              key={column.id}
+            />
           );
         })}
       </DragDropContext>

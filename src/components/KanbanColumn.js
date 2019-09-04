@@ -23,12 +23,12 @@ const ColumnDroppable = styled.div`
   height: 100%;
 `;
 
-function KanbanColumn({ column }) {
+function KanbanColumn({ column, createTask }) {
   return (
     <Column>
       <Header>
         <h3>{column.title}</h3>
-        <Button>new</Button>
+        <Button onClick={() => createTask(column.id)}>new</Button>
       </Header>
       <Droppable droppableId={column.id}>
         {provided => (
@@ -37,14 +37,8 @@ function KanbanColumn({ column }) {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {column.tasks.order.map((taskId, index) => {
-              return (
-                <KanbanTask
-                  task={column.tasks.data[taskId]}
-                  index={index}
-                  key={taskId}
-                />
-              );
+            {column.tasks.map((task, index) => {
+              return <KanbanTask task={task} index={index} key={task.id} />;
             })}
             {provided.placeholder}
           </ColumnDroppable>
