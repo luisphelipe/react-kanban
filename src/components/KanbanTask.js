@@ -1,21 +1,35 @@
 import React from "react";
+import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
+
+const Task = styled.div`
+  margin: 0.5rem 0;
+  background-color: #eee;
+`;
+
+const Title = styled.div`
+  background-color: #ddd;
+  padding: 0.3rem 0.9rem;
+`;
+
+const Description = styled.div`
+  padding: 0.3rem 0.9rem;
+`;
 
 function KanbanTask({ task, index }) {
   return (
     <Draggable draggableId={task.id} index={index}>
       {provided => (
-        <div
-          className="kanban-task"
+        <Task
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
           <div>
-            <div className="kanban-task-title">{task.title}</div>
-            <div className="kanban-task-description">{task.content}</div>
+            <Title>{task.title}</Title>
+            <Description>{task.content}</Description>
           </div>
-        </div>
+        </Task>
       )}
     </Draggable>
   );
