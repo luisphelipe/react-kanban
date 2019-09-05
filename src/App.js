@@ -2,7 +2,6 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import Board from "./components/kanban/Board";
-import Navbar from "./components/Navbar";
 
 const main = {
   fontColor: {
@@ -12,7 +11,7 @@ const main = {
   backgroundColor: {
     primary: "#BD995C",
     secondary: "#994C10",
-    secondaryBlack: "#593311", // color between fontColor.primary and backgroundColor.secondary
+    secondaryBlack: "#593311", // icon darker secondary color
 
     primaryTransparent: "#BD995CD0",
     secondaryTransparent: "#994C104C"
@@ -29,7 +28,6 @@ function App() {
   return (
     <ThemeProvider theme={main}>
       <Container className="App">
-        {/* <Navbar /> */}
         <Board />
       </Container>
     </ThemeProvider>

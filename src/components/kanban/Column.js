@@ -25,13 +25,13 @@ const Header = styled.div`
   align-items: center;
   padding: 0 1rem;
   margin-bottom: 0.5rem;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.2rem;
 
   background-color: ${props => props.theme.backgroundColor.primaryTransparent};
 `;
 
 const HeaderTitle = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: normal;
 `;
 
@@ -102,6 +102,7 @@ const Button = styled.button`
   font-size: 1.1rem;
   outline: none;
   font-family: inherit;
+  letter-spacing: 0.2rem;
 `;
 // border-radius: 15px;
 
@@ -145,7 +146,7 @@ function Column({
     <Container columnWidth={columnWidth}>
       <HeaderWrapper>
         <Header>
-          <HeaderTitle>{column.title}</HeaderTitle>
+          <HeaderTitle>{`${column.title} ${column.tasks.length}`}</HeaderTitle>
           <ActionsWrapper>
             <Icon src="plus.png" onClick={() => setModalIsOpen(true)} />
             <Icon src="hide.png" onClick={hideColumn} />
@@ -182,6 +183,7 @@ function Column({
       >
         <TaskInputWrapper>
           <TitleInput
+            autoFocus
             type="text"
             value={taskTitle}
             onChange={event => {
