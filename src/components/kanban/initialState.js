@@ -1,7 +1,7 @@
 export default [
   {
     id: "c1",
-    title: "Backlog",
+    title: "BACKLOG",
     tasks: [
       {
         id: "t1",
@@ -18,7 +18,7 @@ export default [
   },
   {
     id: "c2",
-    title: "Work in Progress",
+    title: "DAILY",
     tasks: [
       {
         id: "t0",
@@ -29,7 +29,17 @@ export default [
   },
   {
     id: "c3",
-    title: "Done",
+    title: "WORKING",
+    tasks: []
+  },
+  {
+    id: "c4",
+    title: "DONE",
+    tasks: []
+  },
+  {
+    id: "c5",
+    title: "ARCHIVED",
     tasks: []
   }
 ];
