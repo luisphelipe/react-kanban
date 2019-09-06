@@ -32,6 +32,7 @@ const Description = styled.div`
   padding: 0.3rem 0.9rem 0.6rem;
   font-size: 1.1rem;
   overflow-wrap: break-word;
+  white-space: pre-line;
 `;
 
 function Task({ task, index, openTaskEdit, deleteTask }) {
