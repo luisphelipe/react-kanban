@@ -103,6 +103,7 @@ const Button = styled.button`
   outline: none;
   font-family: inherit;
   letter-spacing: 0.2rem;
+  cursor: pointer;
 `;
 // border-radius: 15px;
 
